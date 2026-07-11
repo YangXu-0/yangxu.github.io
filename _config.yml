@@ -1,5 +1,5 @@
 # Basic Information 
-title: Your Name
+title: Yang Xu
 position: MSc CS Student
 affiliation: University of Toronto
 email: yanguoft.xu (at) mail.utoronto.ca
@@ -19,9 +19,9 @@ linkedin: https://www.linkedin.com/in/yangxu0/
 
 # Images (e.g., your profile picture and your website's favicon) 
 # "favicon" and "favicon_dark" are used for the light and dark modes, respectively. 
-avatar: ./assets/img/avatar.png
-favicon: ./assets/img/robot_arm_favicon.png
-favicon_dark: ./assets/img/robot_arm_favicon.png
+avatar: ./assets/img/avatar.jpg
+favicon: ./assets/img/robo_arm_favicon.png
+favicon_dark: ./assets/img/robot_head_favicon.png
 
 # Footnote
 # You may use the option to disable the footnote, "Powered by Jekyll and Minimal Light theme."
