@@ -1,0 +1,22 @@
+<h2>Teaching</h2>
+
+{% if site.data.teaching.main %}
+<ul style="margin:0 0 5px;">
+  {% for item in site.data.teaching.main %}
+  <li>
+    {% if item.term %}<strong>{{ item.term }}</strong>{% endif %}
+    {% if item.term and item.title %}: {% endif %}
+    {% if item.link %}
+    <a href="{{ item.link }}">
+      <autocolor>{{ item.title }}</autocolor>
+    </a>
+    {% else %}
+    {{ item.title }}
+    {% endif %}
+    {% if item.role %} - {{ item.role }}{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p style="margin:0 0 5px;">Add your teaching entries in <a href="{{ '/_data/teaching.yml' | relative_url }}">_data/teaching.yml</a>.</p>
+{% endif %}

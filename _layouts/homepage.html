@@ -98,13 +98,19 @@
       {{ content }}
 
       {% include publications.html %}
-      
+
+      {% if site.enable_services and site.data.services %}
       {% include services.html %}
+      {% endif %}
 
       <br>
 
       {% if site.enable_footnote %}
       <p><small>Powered by Jekyll and <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank" rel="noopener">Minimal Light</a> theme.</small></p>
+      {% endif %}
+
+      {% if site.enable_teaching and site.data.teaching %}
+      {% include teaching.html %}
       {% endif %}
 
       </section>
