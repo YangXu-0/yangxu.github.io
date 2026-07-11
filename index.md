@@ -4,7 +4,9 @@ layout: homepage
 
 ## About Me
 
-I am a MSc CS student at the University of Toronto co-supervised by Professor Igor Gilitschenski and Professor Nick Rhinehart. Prior to this, I received by Bachelor's degree in Engineering Science (Robotics Major) from the University of Toronto.
+I am a MSc computer science student at the University of Toronto working on robotics research. I am co-supervised by Professor Igor Gilitschenski (Toronto Intelligent Systems Lab) and Professor Nick Rhinehart (LEAF Lab).\
+
+Prior to this, I received by Bachelor's degree in Engineering Science (Robotics Major) from the University of Toronto.
 
 <!-- ## Research Interests
 
