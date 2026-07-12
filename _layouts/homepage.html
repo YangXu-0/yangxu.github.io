@@ -99,6 +99,10 @@
 
       {% include publications.html %}
 
+      {% if site.enable_projects %}
+      {% include projects.html %}
+      {% endif %}
+
       {% if site.enable_services and site.data.services %}
       {% include services.html %}
       {% endif %}

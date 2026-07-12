@@ -1,0 +1,45 @@
+<h2>Projects</h2>
+
+{% if site.data.projects.main %}
+<div class="publications">
+  <ol class="bibliography">
+    {% for project in site.data.projects.main %}
+    <li>
+      <div class="pub-row">
+        <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+          {% if project.image %}
+          <img src="{{ project.image }}" class="teaser img-fluid z-depth-1">
+          {% endif %}
+        </div>
+        <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+          <div class="title">
+            {% if project.link %}
+            <a href="{{ project.link }}">{{ project.title }}</a>
+            {% else %}
+            {{ project.title }}
+            {% endif %}
+          </div>
+          {% if project.description %}
+          <div class="author">{{ project.description }}</div>
+          {% endif %}
+          <div class="links">
+            {% if project.link %}
+            <a href="{{ project.link }}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Project Page</a>
+            {% endif %}
+            {% if project.code %}
+            <a href="{{ project.code }}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+            {% endif %}
+            {% if project.notes %}
+            <strong> <i style="color:#e74d3c">{{ project.notes }}</i></strong>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </li>
+    <br>
+    {% endfor %}
+  </ol>
+</div>
+{% else %}
+<p>Add your projects in <a href="{{ '/_data/projects.yml' | relative_url }}">_data/projects.yml</a>.</p>
+{% endif %}
