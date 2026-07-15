@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: " en-US" }}">
+
+<head>
+  <title>{{ page.title }} | {{ site.title }}</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  {% if site.canonical %}
+  <link rel="canonical" href="{{ site.canonical }}" />
+  {% endif %}
+
+  <link rel="icon" media="(prefers-color-scheme:dark)" href="{{ site.favicon_dark }}" type="image/png" />
+  <link rel="icon" media="(prefers-color-scheme:light)" href="{{ site.favicon }}" type="image/png" />
+  <script src="{{ '/assets/js/favicon-switcher.js' | relative_url }}" type="application/javascript"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* ── Reset & Base ──────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #0f2040;
+      --indigo: #2c3e7a;
+      --accent: #4e72f5;
+      --accent-h: #3a5cd4;
+      --text: #1a1f36;
+      --muted: #5c6580;
+      --border: #e2e6f0;
+      --bg: #f7f8fc;
+      --white: #ffffff;
+      --radius: 12px;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Page Shell ────────────────────────────────────────────────── */
+    .pp-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Top Nav ───────────────────────────────────────────────────── */
+    .pp-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 0;
+    }
+
+    .pp-nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .pp-nav-back:hover {
+      color: var(--accent);
+    }
+
+    .pp-nav-back i {
+      font-size: 0.75rem;
+    }
+
+    .pp-nav-site {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .pp-nav-site:hover {
+      color: var(--accent);
+    }
+
+    /* ── Hero ──────────────────────────────────────────────────────── */
+    .pp-hero {
+      text-align: center;
+      padding: 52px 0 36px;
+    }
+
+    .pp-venue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #e8edff 0%, #f0f4ff 100%);
+      color: var(--indigo);
+      border: 1px solid #c5d0f7;
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      margin-bottom: 22px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .pp-venue-badge:hover {
+      background: linear-gradient(135deg, #d8e0ff 0%, #e6ecff 100%);
+      transform: translateY(-1px);
+      color: var(--indigo);
+    }
+
+    .pp-venue-badge i {
+      font-size: 0.72rem;
+    }
+
+    .pp-title {
+      font-size: clamp(1.75rem, 4.5vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      max-width: 1000px;
+      margin: 0 auto 28px;
+    }
+
+    /* ── Authors ───────────────────────────────────────────────────── */
+    .pp-authors {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 20px;
+      margin-bottom: 10px;
+    }
+
+    .pp-author {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .pp-author:hover {
+      color: var(--accent);
+    }
+
+    .pp-author.star {
+      color: var(--indigo);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: 2px;
+    }
+
+    .pp-author-sep {
+      color: var(--border);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      user-select: none;
+    }
+
+    .pp-affil-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      margin-top: 4px;
+    }
+
+    /* ── Action Buttons ────────────────────────────────────────────── */
+    .pp-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+
+    .pp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 20px;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      border: 2px solid transparent;
+      transition: all 0.18s ease;
+      cursor: pointer;
+    }
+
+    .pp-btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .pp-btn-primary:hover {
+      background: var(--accent-h);
+      border-color: var(--accent-h);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(78, 114, 245, 0.3);
+    }
+
+    .pp-btn-outline {
+      background: var(--white);
+      color: var(--indigo);
+      border-color: var(--border);
+    }
+
+    .pp-btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(78, 114, 245, 0.12);
+    }
+
+    .pp-btn i {
+      font-size: 0.82rem;
+    }
+
+    /* ── Teaser ────────────────────────────────────────────────────── */
+    .pp-teaser {
+      margin-bottom: 52px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(15, 32, 64, 0.12);
+      border: 1px solid var(--border);
+      background: #000;
+    }
+
+    .pp-teaser img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: cover;
+    }
+
+    .pp-teaser iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+    }
+
+    .pp-teaser-caption {
+      padding: 12px 18px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* ── Content Body ──────────────────────────────────────────────── */
+    .pp-content {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 52px;
+      box-shadow: 0 8px 40px rgba(15, 32, 64, 0.06);
+      margin-bottom: 32px;
+    }
+
+    /* Markdown typography */
+    .pp-content h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      margin: 40px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .pp-content h2:first-child {
+      margin-top: 0;
+    }
+
+    .pp-content h3 {
+      font-size: 1.1rem;
+      font-weight: 650;
+      color: var(--indigo);
+      margin: 28px 0 10px;
+    }
+
+    .pp-content p {
+      margin-bottom: 18px;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .pp-content a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: color 0.15s;
+    }
+
+    .pp-content a:hover {
+      color: var(--accent-h);
+    }
+
+    .pp-content ul,
+    .pp-content ol {
+      padding-left: 22px;
+      margin-bottom: 18px;
+    }
+
+    .pp-content li {
+      margin-bottom: 6px;
+      line-height: 1.75;
+    }
+
+    .pp-content img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 10px 0;
+      border: 1px solid var(--border);
+    }
+
+    .pp-content strong {
+      color: var(--navy);
+      font-weight: 650;
+    }
+
+    .pp-content em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .pp-content code {
+      font-family: var(--mono);
+      font-size: 0.85em;
+      background: #f0f4ff;
+      color: #3a3f8a;
+      padding: 2px 6px;
+      border-radius: 5px;
+      border: 1px solid #dce3f8;
+    }
+
+    .pp-content pre {
+      background: #0f1729;
+      color: #c8d5f7;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      padding: 20px 24px;
+      border-radius: 12px;
+      overflow-x: auto;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .pp-content pre code {
+      background: none;
+      color: inherit;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+    }
+
+    .pp-content blockquote {
+      border-left: 3px solid var(--accent);
+      background: #f5f7ff;
+      padding: 14px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 20px 0;
+      color: var(--muted);
+    }
+
+    .pp-content hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+
+    .pp-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    .pp-content th {
+      background: #f0f4ff;
+      color: var(--indigo);
+      font-weight: 600;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .pp-content td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .pp-content tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ── BibTeX Card ───────────────────────────────────────────────── */
+    .pp-bibtex {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 36px;
+      box-shadow: 0 4px 20px rgba(15, 32, 64, 0.05);
+      margin-bottom: 32px;
+    }
+
+    .pp-bibtex h3 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .pp-bibtex h3 i {
+      color: var(--accent);
+    }
+
+    .pp-bibtex-inner {
+      position: relative;
+    }
+
+    .pp-bibtex pre {
+      background: #0f1729;
+      color: #a8b8e8;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      padding: 18px 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      line-height: 1.65;
+      white-space: pre;
+      margin: 0;
+    }
+
+    .pp-copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #a8b8e8;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 7px;
+      padding: 5px 10px;
+      font-size: 0.75rem;
+      font-family: var(--sans);
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pp-copy-btn:hover {
+      background: rgba(78, 114, 245, 0.35);
+      color: #fff;
+    }
+
+    .pp-copy-btn.copied {
+      background: rgba(34, 197, 94, 0.25);
+      color: #86efac;
+      border-color: rgba(34, 197, 94, 0.3);
+    }
+
+    /* ── Divider ───────────────────────────────────────────────────── */
+    .pp-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 20px 0 32px;
+    }
+
+    /* ── Responsive ────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .pp-wrap {
+        padding: 0 16px 60px;
+      }
+
+      .pp-content {
+        padding: 28px 22px;
+      }
+
+      .pp-bibtex {
+        padding: 20px 18px;
+      }
+
+      .pp-hero {
+        padding: 36px 0 24px;
+      }
+
+      .pp-title {
+        font-size: 1.6rem;
+      }
+
+      .pp-author {
+        font-size: 0.9rem;
+      }
+
+      .pp-buttons {
+        gap: 8px;
+      }
+
+      .pp-btn {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pp-wrap">
+
+    <!-- ── Top Nav ── -->
+    <nav class="pp-nav" aria-label="Site navigation">
+      <a href="{{ '/' | relative_url }}" class="pp-nav-back">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </a>
+      <!-- <a href="{{ '/' | relative_url }}" class="pp-nav-site">{{ site.title }}</a> -->
+    </nav>
+
+    <!-- ── Hero ── -->
+    <header class="pp-hero">
+      {% if page.venue %}
+      {% if page.venue_url %}
+      <a href="{{ page.venue_url }}" target="_blank" rel="noopener" class="pp-venue-badge">
+        <i class="fa-solid fa-location-dot"></i>{{ page.venue }}
+      </a>
+      {% else %}
+      <span class="pp-venue-badge">
+        <i class="fa-solid fa-location-dot"></i>{{ page.venue }}
+      </span>
+      {% endif %}
+      {% endif %}
+
+      <h1 class="pp-title">{{ page.title }}</h1>
+
+      {% if page.authors %}
+      <div class="pp-authors">
+        {% for author in page.authors %}
+        {% unless forloop.first %}
+        <span class="pp-author-sep">·</span>
+        {% endunless %}
+        {% if author.url %}
+        <a href="{{ author.url }}" target="{{ author.url | prepend: 'http' | starts_with: 'http' | default: '_self' }}"
+          class="pp-author {% if author.star %}star{% endif %}">{{ author.name }}{% if author.note %}<sup>{{ author.note
+            }}</sup>{% endif %}</a>
+        {% else %}
+        <span class="pp-author {% if author.star %}star{% endif %}">{{ author.name }}{% if author.note %}<sup>{{
+            author.note }}</sup>{% endif %}</span>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% if page.affiliation_note %}
+      <p class="pp-affil-note">{{ page.affiliation_note }}</p>
+      {% endif %}
+      {% endif %}
+
+      <!-- Action buttons -->
+      <div class="pp-buttons">
+        {% if page.pdf %}
+        <a href="{{ page.pdf }}" target="_blank" rel="noopener" class="pp-btn pp-btn-primary">
+          <i class="fa-solid fa-file-pdf"></i> Paper PDF
+        </a>
+        {% endif %}
+        {% if page.arxiv %}
+        <a href="{{ page.arxiv }}" target="_blank" rel="noopener" class="pp-btn pp-btn-outline">
+          <i class="ai ai-arxiv"></i> arXiv
+        </a>
+        {% endif %}
+        {% if page.code %}
+        <a href="{{ page.code }}" target="_blank" rel="noopener" class="pp-btn pp-btn-outline">
+          <i class="fa-brands fa-github"></i> Code
+        </a>
+        {% endif %}
+        {% if page.video %}
+        <a href="{{ page.video }}" target="_blank" rel="noopener" class="pp-btn pp-btn-outline">
+          <i class="fa-solid fa-circle-play"></i> Video
+        </a>
+        {% endif %}
+        {% if page.poster %}
+        <a href="{{ page.poster }}" target="_blank" rel="noopener" class="pp-btn pp-btn-outline">
+          <i class="fa-solid fa-image"></i> Poster
+        </a>
+        {% endif %}
+        {% if page.slides %}
+        <a href="{{ page.slides }}" target="_blank" rel="noopener" class="pp-btn pp-btn-outline">
+          <i class="fa-solid fa-chalkboard"></i> Slides
+        </a>
+        {% endif %}
+      </div>
+    </header>
+
+    <!-- ── Teaser ── -->
+    {% if page.teaser_video %}
+    <div class="pp-teaser">
+      <iframe src="{{ page.teaser_video }}" allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen></iframe>
+      {% if page.teaser_caption %}
+      <div class="pp-teaser-caption">{{ page.teaser_caption }}</div>
+      {% endif %}
+    </div>
+    {% elsif page.teaser %}
+    <div class="pp-teaser">
+      <img src="{{ page.teaser }}" alt="{{ page.title }} teaser figure">
+      {% if page.teaser_caption %}
+      <div class="pp-teaser-caption">{{ page.teaser_caption }}</div>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- ── Main Content (rendered from markdown) ── -->
+    <main class="pp-content">
+      {{ content }}
+    </main>
+
+    <!-- ── BibTeX ── -->
+    {% if page.bibtex %}
+    <div class="pp-bibtex">
+      <h3><i class="fa-solid fa-quote-left"></i> Citation</h3>
+      <div class="pp-bibtex-inner">
+        <pre id="pp-bibtex-text">{{ page.bibtex }}</pre>
+        <button class="pp-copy-btn" id="pp-copy-btn" onclick="copyBibtex()" aria-label="Copy BibTeX">
+          <i class="fa-regular fa-copy"></i> Copy
+        </button>
+      </div>
+    </div>
+    {% endif %}
+
+  </div><!-- /.pp-wrap -->
+
+  <!-- Academicons for arXiv icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css"
+    crossorigin="anonymous">
+
+  <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
+
+  <script>
+    function copyBibtex() {
+      const text = document.getElementById('pp-bibtex-text').innerText;
+      const btn = document.getElementById('pp-copy-btn');
+      navigator.clipboard.writeText(text).then(() => {
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+          btn.classList.remove('copied');
+        }, 2200);
+      }).catch(() => {
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+          btn.classList.remove('copied');
+        }, 2200);
+      });
+    }
+  </script>
+
+  {% if site.google_analytics %}
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', '{{ site.google_analytics }}', 'auto');
+    ga('send', 'pageview');
+  </script>
+  {% endif %}
+</body>
+
+</html>

@@ -13,7 +13,9 @@
         </div>
         <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
           <div class="title">
-            {% if project.link %}
+            {% if project.code %}
+            <a href="{{ project.code }}">{{ project.title }}</a>
+            {% elsif project.link %}
             <a href="{{ project.link }}">{{ project.title }}</a>
             {% else %}
             {{ project.title }}
@@ -23,11 +25,25 @@
           <div class="author">{{ project.description }}</div>
           {% endif %}
           <div class="links">
+            {% if project.pdf %}
+            <a href="{{ project.pdf }}" class="btn btn-sm z-depth-0" role="button" target="_blank"
+              style="font-size:12px; margin: 0 5px 0 0;">
+              <i class="fa-solid fa-file-pdf"></i> PDF
+            </a>
+            {% endif %}
+            {% if project.youtube %}
+            <a href="{{ project.youtube }}" class="btn btn-sm z-depth-0" role="button" target="_blank"
+              style="font-size:12px; margin: 0 5px 0 0;">
+              <i class="fa-brands fa-youtube"></i> Demo
+            </a>
+            {% endif %}
             {% if project.link %}
-            <a href="{{ project.link }}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Project Page</a>
+            <a href="{{ project.link }}" class="btn btn-sm z-depth-0" role="button" target="_blank"
+              style="font-size:12px; margin: 0 5px 0 0;">Project Page</a>
             {% endif %}
             {% if project.code %}
-            <a href="{{ project.code }}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+            <a href="{{ project.code }}" class="btn btn-sm z-depth-0" role="button" target="_blank"
+              style="font-size:12px; margin: 0 5px 0 0;"><i class="fa-brands fa-github"></i> Code</a>
             {% endif %}
             {% if project.notes %}
             <strong> <i style="color:#e74d3c">{{ project.notes }}</i></strong>

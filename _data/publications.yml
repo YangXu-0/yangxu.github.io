@@ -1,12 +1,20 @@
 main:
-
-  # Template
-  # - title: Continual Learning for Abdominal Multi-Organ and Tumor Segmentation
-  #   authors: Yixiao Zhang, Xinyi Li, Huimiao Chen, Alan Yuille, <strong>Yaoyao Liu*</strong>, Zongwei Zhou* (*Corresponding authors)
-  #   conference_short: MICCAI
-  #   conference: International Conference on Medical Image Computing and Computer-Assisted Intervention <strong>(MICCAI)</strong>, 2023.
-  #   pdf: https://arxiv.org/pdf/2306.00988.pdf
-  #   code: https://github.com/MrGiovanni/ContinualLearning
-  #   bibtex: https://bib.yliu.me/MICCAI23.txt
-  #   image: ./assets/img/teaser_example_2.png
-  #   notes: Early Accept
+  - title: "SeededGrasp: Language-Guided Grasping in Complex Scenes with Multiple Embodiments"
+    authors:
+      - name: <b>Yang Xu*</b>
+        url: /
+      - name: Gurpreet Singh Mukker*
+      - name: Raymond Wang*
+      - name: Jasper Gerigk
+        url: https://jaspergerigk.com/
+      - name: Maria Attarian
+        url: https://jmattarian.com/
+      - name: Igor Gilitschenski
+        url: https://www.gilitschenski.org/igor/
+    conference_short: Preprint
+    conference: arXiv 2026
+    pdf: https://example.com/robotics-paper.pdf
+    code: https://github.com/uoft-isl/SeededGrasp
+    page: https://seededgrasp.github.io
+    image: ./assets/img/seeded_grasp/seeded_grasp_thumbnail.png
+    notes: 

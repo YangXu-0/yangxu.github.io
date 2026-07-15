@@ -1,6 +1,7 @@
 {% if site.data.publications %}
 
-<h2 id="publications" style="margin: 2px 0px -15px;">Publications</h2>
+<h2 id="publications" style="margin: 2px 0 0;">Publications</h2>
+<p style="margin: 8px 0 20px; font-size: 0.92rem; color: #9ca3af; line-height: 1.3;"><em>*Shared first</em></p>
 
 <div class="publications">
   <ol class="bibliography">
@@ -18,18 +19,41 @@
           {% endif %}
         </div>
         <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-          <div class="title"><a href="{{ link.pdf }}">{{ link.title }}</a></div>
-          <div class="author">{{ link.authors }}</div>
+          <div class="title">
+            {% if link.page %}
+            <a href="{{ link.page }}">{{ link.title }}</a>
+            {% else %}
+            <a href="{{ link.pdf }}">{{ link.title }}</a>
+            {% endif %}
+          </div>
+          <div class="author">
+            {% if link.authors.first %}
+              {% for author in link.authors %}
+                {% assign is_self = false %}
+                {% if author.name contains "Yang Xu" %}
+                  {% assign is_self = true %}
+                {% endif %}
+                
+                {% if author.url %}
+                  <a href="{{ author.url }}" {% if is_self %}style="color: #000000; font-weight: bold;"{% endif %}>{{ author.name }}</a>{% unless forloop.last %}, {% endunless %}
+                {% else %}
+                  <span style="color: #828282; font-size: 0.95em;">{{ author.name }}</span>{% unless forloop.last %}, {% endunless %}
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              {{ link.authors }}
+            {% endif %}
+          </div>
           <div class="periodical"><em>{{ link.conference }}</em>
           </div>
           <div class="links">
             {% if link.pdf %}
             <a href="{{ link.pdf }}" class="btn btn-sm z-depth-0" role="button" target="_blank"
-              style="font-size:12px;">PDF</a>
+              style="font-size:12px; margin: 0 5px 0 0;"><i class="fa-solid fa-file-pdf"></i> PDF</a>
             {% endif %}
             {% if link.code %}
             <a href="{{ link.code }}" class="btn btn-sm z-depth-0" role="button" target="_blank"
-              style="font-size:12px;">Code</a>
+              style="font-size:12px; margin: 0 5px 0 0;"><i class="fa-brands fa-github"></i> Code</a>
             {% endif %}
             {% if link.page %}
             <a href="{{ link.page }}" class="btn btn-sm z-depth-0" role="button" target="_blank"

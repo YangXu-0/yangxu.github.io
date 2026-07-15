@@ -1,8 +1,8 @@
 main:
-  # Add projects here, for example:
-  # - title: My Cool Project
-  #   description: A short one-line summary of the project.
-  #   link: https://example.com
-  #   code: https://github.com/username/project
-  #   image: ./assets/img/project.png
-  #   notes: In progress
+  - title: Open-World Natural Language-Guided Semantic Mapping and Search with Micro-Aerial Vehicles
+    description: EngSci Robo Capstone Project
+    code: https://github.com/allenapplehead/jinglers
+    image: ./assets/img/rob498_drone_gif.gif
+    pdf: ./assets/files/capstone_report.pdf
+    youtube: https://youtu.be/xv6DSyGKreg
+    notes: 
