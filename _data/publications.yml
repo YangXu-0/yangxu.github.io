@@ -15,6 +15,6 @@ main:
     conference: arXiv 2026
     pdf: https://example.com/robotics-paper.pdf
     code: https://github.com/uoft-isl/SeededGrasp
-    page: https://seededgrasp.github.io
+    page: https://uoft-isl.github.io/seededgrasp.github.io/
     image: ./assets/img/seeded_grasp/seeded_grasp_thumbnail.png
     notes: 
