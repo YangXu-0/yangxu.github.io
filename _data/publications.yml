@@ -12,9 +12,10 @@ main:
       - name: Igor Gilitschenski
         url: https://www.gilitschenski.org/igor/
     conference_short: Preprint
-    conference: arXiv 2026
-    pdf: https://example.com/robotics-paper.pdf
+    conference: arXiv preprint 2026
+    pdf: ./assets/files/seeded_grasp_paper.pdf
     code: https://github.com/uoft-isl/SeededGrasp
+    poster: ./assets/files/seeded_grasp_poster_small.pdf
     page: https://uoft-isl.github.io/seeded-grasp/
     image: ./assets/img/seeded_grasp/seeded_grasp_thumbnail.png
     notes: 
